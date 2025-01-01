@@ -1,15 +1,15 @@
-﻿@model ErrorViewModel
+﻿@model VendasWebMvc.Models.ViewModels.ErrorViewModel
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Titulo"] = "Erro";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<h1 class="text-danger">@ViewData["Titulo"]</h1>
+<h2 class="text-danger">Ocorreu um erro enquanto sua requisição processava.</h2>
 
 @if (Model.ShowRequestId)
 {
     <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+        <strong>ID da Requisição:</strong> <code>@Model.RequestId</code>
     </p>
 }
 
