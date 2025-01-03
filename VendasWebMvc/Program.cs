@@ -2,8 +2,16 @@
 using Microsoft.Extensions.DependencyInjection;
 using VendasWebMvc.Data;
 var builder = WebApplication.CreateBuilder(args);
+/*builder.Services.AddDbContext<VendasWebMvcContext>(options =>
+    options.UseMySql(Configuration.GetConnectionString("VendasWebMvccontext"), builder =>
+    builder.MigrationsAssembly("VendasWebMvc"));*/
+
 builder.Services.AddDbContext<VendasWebMvcContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("VendasWebMvcContext") ?? throw new InvalidOperationException("Connection string 'VendasWebMvcContext' not found.")));
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("VendasWebMvcContext"), // Acessando corretamente a configuração
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("VendasWebMvcContext")) // Detecta automaticamente a versão do MySQL
+    )
+);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

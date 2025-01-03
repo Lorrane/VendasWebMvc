@@ -135,7 +135,7 @@ namespace VendasWebMvc.Controllers
         }
 
         // POST: Departamentos/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExclusaoConfirmada(int id)
         {
