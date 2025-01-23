@@ -1,13 +1,12 @@
 ﻿@model VendasWebMvc.Models.Departamento
 
 @{
-    ViewData["Titulo"] = "Detalhes";
+    ViewData["Titulo"] = "Consulta de Departamento";
 }
 
 <h1>@ViewData["Titulo"]</h1>
 
 <div>
-    <h4>Departamento</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -19,6 +18,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Editar" asp-route-id="@Model?.Id">Editar</a> |
-    <a asp-action="Index">Voltar</a>
+    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+    <a asp-action="Editar" class="btn btn-primary" asp-route-id="@Model?.Id">Editar</a>
 </div>

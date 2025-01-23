@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 
 namespace VendasWebMvc.Models
 {
@@ -9,8 +10,16 @@ namespace VendasWebMvc.Models
         public String Email { get; set; }
         public DateTime DataNascimento { get; set; }
         public double SalarioBase { get; set; }
+        public int DepartamentoId { get; set; }
         public Departamento Departamento { get; set; }
         public ICollection<RegistroVendas> Vendas { get; set; } = new List<RegistroVendas>();
+        public string DataNascimentoFormatada
+        {
+            get
+            {
+                return DataNascimento.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("pt-BR"));
+            }
+        }
 
         public Vendedor() { }
 

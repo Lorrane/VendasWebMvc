@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VendasWebMvc.Data;
 using VendasWebMvc.Models;
+using VendasWebMvc.Services;
 
 namespace VendasWebMvc.Controllers
 {
@@ -14,15 +15,18 @@ namespace VendasWebMvc.Controllers
     {
         private readonly VendasWebMvcContext _contexto;
 
+
         public DepartamentosController(VendasWebMvcContext context)
         {
             _contexto = context;
         }
 
+
         // GET: Departamentos
         public async Task<IActionResult> Index()
         {
             return View(await _contexto.Departamento.ToListAsync());
+            
         }
 
         // GET: Departamentos/Details/5
@@ -33,8 +37,10 @@ namespace VendasWebMvc.Controllers
                 return NotFound();
             }
 
+            
             var departamento = await _contexto.Departamento
                 .FirstOrDefaultAsync(m => m.Id == id);
+            
             if (departamento == null)
             {
                 return NotFound();
@@ -124,8 +130,7 @@ namespace VendasWebMvc.Controllers
                 return NotFound();
             }
 
-            var departamento = await _contexto.Departamento
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var departamento = await _contexto.Departamento.FirstOrDefaultAsync(m => m.Id == id);
             if (departamento == null)
             {
                 return NotFound();
@@ -139,11 +144,9 @@ namespace VendasWebMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExclusaoConfirmada(int id)
         {
-            var departamento = await _contexto.Departamento.FindAsync(id);
-            if (departamento != null)
-            {
-                _contexto.Departamento.Remove(departamento);
-            }
+            
+                _contexto.Departamento.Remove(await _contexto.Departamento.FindAsync(id));
+            
 
             await _contexto.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

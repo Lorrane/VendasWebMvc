@@ -1,12 +1,11 @@
 ﻿@model VendasWebMvc.Models.Departamento
 
 @{
-    ViewData["Titulo"] = "Adicionar";
+    ViewData["Titulo"] = "Cadastro de Departamento";
 }
 
 <h1>@ViewData["Titulo"]</h1>
 
-<h4>Departamento</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,16 +16,15 @@
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
+                <a asp-action="Index" class="btn btn-secondary">Voltar</a>
                 <input type="submit" value="Adicionar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Voltar</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

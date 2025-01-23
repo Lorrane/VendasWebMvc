@@ -1,0 +1,44 @@
+﻿@model VendasWebMvc.Models.Vendedor
+
+@{
+	ViewData["Titulo"] = "Confirmação de Exclusão";
+}
+
+<h1>@ViewData["Titulo"]</h1>
+
+<h3> Tem certea que deseja excluir o vendedor? </h3>
+
+<hr />
+
+<dl class="d-lg-table">
+	<dt>
+		@Html.DisplayNameFor(model => model.Nome)
+	</dt>
+	<dd>
+		@Html.DisplayFor(model => model.Nome)
+	</dd>
+	<dt>
+		@Html.DisplayNameFor(model => model.Email)
+	</dt>
+	<dd>
+		@Html.DisplayFor(model => model.Email)
+	</dd>
+	<dt>
+		@Html.DisplayNameFor(model => model.DataNascimento)
+	</dt>
+	<dd>
+		@Html.DisplayFor(model => model.DataNascimento)
+	</dd>
+	<dt>
+		@Html.DisplayNameFor(model => model.SalarioBase)
+	</dt>
+	<dd>
+		@Html.DisplayFor(model => model.SalarioBase)
+	</dd>
+</dl>
+
+<form asp-action="Excluir">
+	<input type="hidden" asp-for="Id"/>
+	<a asp-action="Index" class="btn btn-secondary">Voltar</a> 
+	<input type="submit" value="Excluir" class="btn btn-danger" />
+</form>
